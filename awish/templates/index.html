@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body id="wrapper">
+    <div id="header">
+        <h1>Login / Registration</h1>
+    </div>
+    <br>
+    <div>
+        <fieldset style="float: left; width: 50%;" class="reg_section_border">
+            <legend>&nbspRegister&nbsp</legend>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <section style="float: left; width: 49.5%;">
+                    <p class="reg_box_content"><label for="first_name">First name:</label></p>
+                    <p class="reg_box_content"><label for="last_name">Last name:</label></p>
+                    <p class="reg_box_content"><label for="email">Email:</label></p>
+                    <p class="reg_box_content"><label for="password">Password:</label></p>
+                    <p class="reg_box_content"><label for="password_confirm">Confirm Password:</label></p>
+                </section>
+                <section style="float: right; width: 49.5%;">
+                    <p><input class="reg_box_input" type="text" name="first_name"></p>
+                    <p><input class="reg_box_input" type="text" name="last_name"></p>
+                    <p><input class="reg_box_input" type="email" name="email"></p>
+                    <p><input class="reg_box_input" type="password" name="password"></p>
+                    <p><input class="reg_box_input" type="password" name="password_confirm"></p>
+                </section>
+                <div style="clear:both"></div>
+                <div class="button_area">
+                    <button class="button" type="submit">Register</button>
+                </div>
+            </form>
+        </fieldset>
+        <fieldset style="float: right; width: 49.5%;" class="login_section_border">
+            <legend>&nbspLogin&nbsp</legend>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+
+
+                <section style="float: left;width: 49.5%;">
+                    <p class="login_box_content"><label for="email">Email:</label></p>
+                    <p class="login_box_content"><label for="password">Password:</label></p>
+                </section>
+                <section style="float: right; width: 49.5%;">
+                    <p><input class="reg_box_input" type="email" name="email"></p>
+                    <p><input class="reg_box_input" type="password" name="password"></p>
+                </section>
+                <div style="clear: both;"></div>
+                <div class="button_area">
+                    <button class="button" type="submit">Login</button>
+                </div>
+            </form>
+        </fieldset>
+        <div style="clear:both"></div>
+        {% if messages %}
+        <ul style='color:red;' class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
